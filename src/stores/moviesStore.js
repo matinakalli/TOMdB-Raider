@@ -4,17 +4,26 @@ class MoviesStore {
 	movies=[];
 	searchTitle="Most Recent Movies";
 	cart=[];
+	toast={
+		isOpen: false,
+		message:"",
+		state: "",
+	}
 
 	constructor() {
         makeAutoObservable(this, {
 			movies: observable,
 			searchTitle: observable,
-			cart: observable
+			cart: observable,
+			toast: observable
 		})
     }
 
-
 	/* SETTERS */
+	setSearchTitle = (title) => {
+		this.searchTitle = title;
+	}
+
 	setMovies = (movies) => {
 		console.log(movies)
 		this.movies = movies;
@@ -22,6 +31,10 @@ class MoviesStore {
 
 	setCart = (cart) => {
 		this.cart = cart;
+	}
+
+	setToast = (toast) => {
+		this.toast = toast;
 	}
 
 }

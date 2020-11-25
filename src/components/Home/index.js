@@ -3,6 +3,9 @@ import React, { useEffect } from "react";
 import TomdbRaiderApi from "../../API/index";
 import { useStores } from "../../stores/useStores";
 import MoviesList from "../MoviesList";
+import tomdbLogo from "../../assets/branding/tomdb-logo.png";
+import styled from "styled-components";
+import Search from "../Search";
 
 const Home = () => {
     const { moviesStore: { setMovies } } = useStores();
@@ -16,7 +19,8 @@ const Home = () => {
 
     return (
         <div>
-            <h1>Hello</h1>
+            <TomdbLogo alt="TOMdB logo" src={tomdbLogo}/>
+            <Search />
             <MoviesList />
         </div>
     )
@@ -24,3 +28,9 @@ const Home = () => {
 }
 
 export default observer(Home);
+
+const TomdbLogo = styled.img`
+    margin: 0 auto;
+    max-width: 500px;
+    display: block;
+`;

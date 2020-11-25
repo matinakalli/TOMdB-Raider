@@ -3,37 +3,42 @@ import React from "react";
 import styled from "styled-components";
 import { useStores } from "../../stores/useStores";
 import { FlexContainer } from "../StyledComponents";
+import popcornAdd from "../../assets/icons/popcorn-add.png";
+import popcornRemove from "../../assets/icons/popcorn-remove.png";
 import "./styles.scss";
 
 const imageOriginUrl = "https://image.tmdb.org/t/p/w500/";
 
 const MovieCard = ({ movie: { id, title, poster_path, vote_average } }) => {
-    const { moviesStore: { cart, setCart } } = useStores();
- 
+    const { moviesStore: { cart, setCart, setToast } } = useStores();
+
     const isInCart = () => {
         return cart.filter((movieId) => (movieId === id));
     }
 
     const addToCart = () => {
         let newArray = cart.slice();
-        console.log(newArray);
         newArray.push(id);
         setCart(newArray);
+        setToast({isOpen: true, message: `Added '${title}' to cart`, state: "success"});
     }
 
     const removeFromCart = () => {
-        let newArray = cart.slice();
-        const rr = newArray.filter((movieId) => (movieId !== id));
-        // newArray.remove(id);
-        console.log(rr)
-        setCart(newArray);
+        let cartArray = cart.slice();
+        cartArray = cartArray.filter((movieId) => (movieId !== id));
+        setCart(cartArray);
+        setToast({isOpen: true, message: `Nooooo!!! Removed '${title}' from the cart`, state: "error"})
     }
 
     return (
         <Card background={`${imageOriginUrl}${poster_path}`}>
+            {isInCart().length > 0 && <Overlay align="center" justify="center">
+                <InCartTitle>IN CART</InCartTitle>
+                <MovieTitle>{title}</MovieTitle>
+                </Overlay>}
             <RateCircle>{vote_average}</RateCircle>
-            {isInCart().length===0 && <AddToCart onClick={() => addToCart()} alt="Add Cart" src="https://img.icons8.com/flat_round/64/000000/add-tag--v1.png" />}
-            {isInCart().length>0 && <RemoveFromCart onClick={() => removeFromCart()} alt="Add Cart" src="https://img.icons8.com/flat_round/64/000000/remove-tag--v1.png" />}
+            {isInCart().length === 0 && <CartIcon onClick={() => addToCart()} alt="Add Cart" src={popcornAdd} />}
+            {isInCart().length > 0 && <CartIcon onClick={() => removeFromCart()} alt="Add Cart" src={popcornRemove} />}
             <StarImage className="rotate-star" alt="star" src="https://img.icons8.com/plasticine/100/000000/star--v1.png" />
         </Card>
     )
@@ -47,7 +52,7 @@ const Card = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    border-radius: 2px;
+    border-radius: 5px;
     padding: 10px;
     width: 200px;
     height: 300px;
@@ -60,10 +65,22 @@ const Card = styled.div`
     }
 `;
 
+const Overlay = styled(FlexContainer)`
+    background-color: rgba(42, 18, 75, 0.8);
+    flex-direction: column;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+`;
+
 const RateCircle = styled(FlexContainer)`
     border-radius:25px;
     border: 2px solid #eae7dc; 
-    background-color: rgba(232, 90, 79, 0.8);
+    background-color: rgba(250, 37, 94, 0.8);
     box-shadow: 3px 1px 11px #eae7dc;
     width: 35px;
     height: 35px;
@@ -79,22 +96,26 @@ const StarImage = styled.img`
     left: 16px;
 `;
 
-const AddToCart = styled.img`
-    width: 40px;
-    height: 40px;
+const CartIcon = styled.img`
+    width: 60px;
+    height: 60px;
     cursor: pointer;
     position absolute;
-    top: 10px;
-    right: 10px;
-
+    top: 5px;
+    right: 5px;
+    z-index: 10;
 `;
 
-const RemoveFromCart = styled.img`
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    position absolute;
-    top: 10px;
-    right: 10px;
+const InCartTitle = styled.h2`
+    color: #eae7dc;
+    text-align: center;
+    font-weight: 600;
+`;
 
+const MovieTitle = styled.h3`
+    color: #eae7dc;
+    text-align: center;
+    font-weight: 500;
+    font-style: italic;
+    padding: 0 5px;
 `;

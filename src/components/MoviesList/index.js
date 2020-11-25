@@ -1,11 +1,12 @@
 import { observer } from "mobx-react";
 import React, { Fragment } from "react";
 import { useStores } from "../../stores/useStores";
+import Toast from "../common/Toast";
 import { FlexContainer } from "../StyledComponents";
 import MovieCard from "./MovieCard";
 
 const MoviesList = () => {
-    const { moviesStore: { movies, searchTitle } } = useStores();
+    const { moviesStore: { movies, searchTitle, toast: {isOpen} } } = useStores();
 
     return (
         <Fragment>
@@ -15,6 +16,7 @@ const MoviesList = () => {
                     <MovieCard key={movie.id} movie={movie} />
                 ))}
             </FlexContainer>
+            {isOpen && <Toast />}
         </Fragment>
     )
 

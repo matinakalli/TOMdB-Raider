@@ -10,7 +10,7 @@ const baseAPI = axios.create({
 
 class TomdbRaiderApi {
 
-  getMoviesBySearch = (search) => baseAPI.get(`search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${search}`);
+  getMoviesBySearch = (search) => baseAPI.get(`search/movie?api_key=${apiKey}&query=${search}`);
 
   getBestMovies = () => baseAPI.get(`discover/movie?api_key=${apiKey}&year=2020`)
   
