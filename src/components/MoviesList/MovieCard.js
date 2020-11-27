@@ -5,6 +5,7 @@ import { useStores } from "../../stores/useStores";
 import { FlexContainer } from "../StyledComponents";
 import popcornAdd from "../../assets/icons/popcorn-add.png";
 import popcornRemove from "../../assets/icons/popcorn-remove.png";
+import defaultPoster from "../../assets/default-poster.png";
 import "./styles.scss";
 
 const imageOriginUrl = "https://image.tmdb.org/t/p/w500/";
@@ -30,8 +31,10 @@ const MovieCard = ({ movie: { id, title, poster_path, vote_average } }) => {
         setToast({isOpen: true, message: `Nooooo!!! Removed '${title}' from the cart`, state: "error"})
     }
 
+    const poster = poster_path ? `${imageOriginUrl}${poster_path}` : defaultPoster;
+
     return (
-        <Card background={`${imageOriginUrl}${poster_path}`}>
+        <Card background={poster}>
             {isInCart().length > 0 && <Overlay align="center" justify="center">
                 <InCartTitle>IN CART</InCartTitle>
                 <MovieTitle>{title}</MovieTitle>
@@ -40,6 +43,7 @@ const MovieCard = ({ movie: { id, title, poster_path, vote_average } }) => {
             {isInCart().length === 0 && <CartIcon onClick={() => addToCart()} alt="Add Cart" src={popcornAdd} />}
             {isInCart().length > 0 && <CartIcon onClick={() => removeFromCart()} alt="Add Cart" src={popcornRemove} />}
             <StarImage className="rotate-star" alt="star" src="https://img.icons8.com/plasticine/100/000000/star--v1.png" />
+            {!poster_path && <MovieTitle style={{width: "90%", position: "absolute", bottom: "20px"}}>{title}</MovieTitle>}
         </Card>
     )
 
@@ -62,6 +66,7 @@ const Card = styled.div`
 
     @media (max-width: 768px) {
         width: 100%;
+        height: 517px;
     }
 `;
 

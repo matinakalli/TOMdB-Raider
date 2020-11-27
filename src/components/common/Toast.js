@@ -7,7 +7,7 @@ import "./styles.scss";
 
 const backgrounds = {
     success: "rgba(60,184,129,0.9)",
-    error: "rgba(250,37,94,0.8)"
+    error: "rgba(250,37,94,0.9)"
 }
 
 const Toast = () => {
