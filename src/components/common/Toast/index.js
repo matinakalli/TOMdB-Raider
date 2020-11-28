@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useStores } from '../../stores/useStores';
-import { FlexContainer } from '../StyledComponents';
+import { useStores } from '../../../stores/useStores';
+import { FlexContainer } from '../../StyledComponents';
 import "./styles.scss";
 
 const backgrounds = {
@@ -36,7 +36,7 @@ const Container = styled(FlexContainer)`
     border-radius: 3px;
     padding: 20px;
     right: 20px;
-    z-index: 100;
+    z-index: 1001;
 
     @media (max-width:768px) {
         left: 5px;

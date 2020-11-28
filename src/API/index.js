@@ -10,9 +10,18 @@ const baseAPI = axios.create({
 
 class TomdbRaiderApi {
 
-  getMoviesBySearch = (search) => baseAPI.get(`search/movie?api_key=${apiKey}&query=${search}`);
+  getMoviesBySearch = (search, page) => baseAPI.get(`search/movie?api_key=${apiKey}&query=${search}&page=${page}`);
 
-  getBestMovies = () => baseAPI.get(`discover/movie?api_key=${apiKey}&year=2020`)
+  getBestMovies = (page) => baseAPI.get(`discover/movie?api_key=${apiKey}&year=2020&page=${page}`);
+
+  
+  buyMovies = (movies) => baseAPI.post("https://api.mocklets.com/mock68075/",movies, {
+		headers: {
+      'X-Mocklets-PublicKey': 'txmovies',
+      'X-Mocklets-Checksum': '830c7cd4a70be6540a4898441ca02951'
+		}
+	});
+
   
 }
 

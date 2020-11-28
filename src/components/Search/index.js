@@ -1,15 +1,14 @@
 import { observer } from "mobx-react";
 import React, { useState } from "react";
 import styled from "styled-components";
-import TomdbRaiderApi from "../../API/index";
 import { useStores } from "../../stores/useStores";
 
 const Search = () => {
-    const [searchValue, setSearchValue] = useState("");
-    const { moviesStore: { setLoadingMovies, setMovies, setSearchTitle, setQueryValue } } = useStores();
+    const [searchValue, setCurrentSearchValue] = useState("");
+    const { moviesStore: { setLoadingMovies, fetchMovies, setSearchValue, setCurrentPage } } = useStores();
 
     const handleChange = (value) => {
-        setSearchValue(value);
+        setCurrentSearchValue(value);
     }
 
     const handleEnterPress = (event) => {
@@ -19,28 +18,10 @@ const Search = () => {
     }
 
     const searchMovies = () => {
-        setLoadingMovies(true)
-        if (searchValue === "") {
-            TomdbRaiderApi.getBestMovies()
-                .then(({ data }) => {
-                    const { page, results, total_pages } = data;
-                    setMovies(results);
-                    setSearchTitle("Most Recent Movies");
-                    setLoadingMovies(false);
-                })
-        }
-        else {
-            TomdbRaiderApi.getMoviesBySearch(searchValue)
-                .then(({ data }) => {
-                    const { page, results, total_pages } = data;
-                    setMovies(results);
-                    setSearchTitle(`Movies searched by '${searchValue}'`);
-                    setQueryValue(searchValue);
-                    setTimeout(() => {
-                        setLoadingMovies(false);
-                    }, 5000);
-                })
-        }
+        setLoadingMovies(true);
+        setSearchValue(searchValue);
+        setCurrentPage(1);
+        fetchMovies(searchValue);
     }
 
     return (

@@ -1,8 +1,8 @@
 import { observer } from "mobx-react";
 import React from "react";
 import styled from "styled-components";
-import emptyBox from "../assets/empty.gif";
-import { useStores } from "../stores/useStores";
+import emptyBox from "../../assets/empty.gif";
+import { useStores } from "../../stores/useStores";
 
 const MoviesNotFound = () => {
     const { moviesStore: { queryValue }} = useStores();

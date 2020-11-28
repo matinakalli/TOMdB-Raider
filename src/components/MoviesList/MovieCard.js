@@ -11,26 +11,22 @@ import "./styles.scss";
 const imageOriginUrl = "https://image.tmdb.org/t/p/w500/";
 
 const MovieCard = ({ movie: { id, title, poster_path, vote_average } }) => {
-    const { moviesStore: { cart, setCart, setToast } } = useStores();
+    const { moviesStore: { cart, setCart, setToast, removeFromCart } } = useStores();
 
     const isInCart = () => {
-        return cart.filter((movieId) => (movieId === id));
+        return cart.filter((movie) => (movie.id === id));
     }
 
     const addToCart = () => {
         let newArray = cart.slice();
-        newArray.push(id);
+        const newMovie = {
+            id,
+            title
+        }
+        newArray.push(newMovie);
         setCart(newArray);
         setToast({isOpen: true, message: `Added '${title}' to cart`, state: "success"});
     }
-
-    const removeFromCart = () => {
-        let cartArray = cart.slice();
-        cartArray = cartArray.filter((movieId) => (movieId !== id));
-        setCart(cartArray);
-        setToast({isOpen: true, message: `Nooooo!!! Removed '${title}' from the cart`, state: "error"})
-    }
-
     const poster = poster_path ? `${imageOriginUrl}${poster_path}` : defaultPoster;
 
     return (
@@ -41,7 +37,7 @@ const MovieCard = ({ movie: { id, title, poster_path, vote_average } }) => {
                 </Overlay>}
             <RateCircle>{vote_average}</RateCircle>
             {isInCart().length === 0 && <CartIcon onClick={() => addToCart()} alt="Add Cart" src={popcornAdd} />}
-            {isInCart().length > 0 && <CartIcon onClick={() => removeFromCart()} alt="Add Cart" src={popcornRemove} />}
+            {isInCart().length > 0 && <CartIcon onClick={() => removeFromCart(id, title)} alt="Add Cart" src={popcornRemove} />}
             <StarImage className="rotate-star" alt="star" src="https://img.icons8.com/plasticine/100/000000/star--v1.png" />
             {!poster_path && <MovieTitle style={{width: "90%", position: "absolute", bottom: "20px"}}>{title}</MovieTitle>}
         </Card>
@@ -71,7 +67,7 @@ const Card = styled.div`
 `;
 
 const Overlay = styled(FlexContainer)`
-    background-color: rgba(42, 18, 75, 0.8);
+    background-color: rgba(49, 66, 143, 0.8);
     flex-direction: column;
     border-radius: 5px;
     width: 100%;

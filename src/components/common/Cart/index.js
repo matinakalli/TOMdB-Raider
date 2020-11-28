@@ -7,10 +7,10 @@ const emptyCart = "https://img.icons8.com/dusk/64/000000/shopping-cart.png";
 const fullCart = "https://img.icons8.com/dusk/64/000000/shopping-cart-loaded.png";
 
 const Cart = () => {
-    const { moviesStore: {moviesInCartNumber} } = useStores();
+    const { moviesStore: {moviesInCartNumber, setShowCartModal, showCartModal} } = useStores();
     
     return (
-        <Container>
+        <Container onClick={() => {setShowCartModal(!showCartModal)}}>
             <CartImage alt="cart" src={moviesInCartNumber === 0 ? emptyCart : fullCart} />
             {moviesInCartNumber > 0 && <MovieCounter>{moviesInCartNumber}</MovieCounter>}
         </Container>
@@ -21,11 +21,13 @@ export default observer(Cart);
 
 const Container = styled.div`
     position: absolute;
+    cursor: pointer;
     right: 20px;
     top: 30px;
 `;
 
 const CartImage = styled.img`
+
     @media (max-width: 768px) {
         width: 50px;
     }
