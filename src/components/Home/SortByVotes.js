@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import React from "react";
 import styled from "styled-components";
 import { useStores } from "../../stores/useStores";
+import { theme } from "../../theme";
 import { FlexContainer } from "../StyledComponents";
 
 /**
@@ -24,7 +25,7 @@ export default observer(SortByVotes);
 
 const Container = styled(FlexContainer)`
     font-size: 20px;
-    @media (max-width: 768px) {
+    @media (max-width: ${theme.breakpoint}) {
         font-size: 15px;
         margin-top: 10px;
     }

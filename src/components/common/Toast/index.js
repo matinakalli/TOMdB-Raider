@@ -2,6 +2,7 @@ import { observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useStores } from '../../../stores/useStores';
+import { theme } from '../../../theme';
 import { FlexContainer } from '../../StyledComponents';
 import "./styles.scss";
 
@@ -11,14 +12,18 @@ const backgrounds = {
 }
 
 const Toast = () => {
-    const { moviesStore: {toast: { message, state } }} = useStores();
+    const { moviesStore: { resetToast, toast: { message, state } }} = useStores();
     const [className, setClassName] = useState("fadeIn");
     
     useEffect(() => {
         setClassName("fadeIn")
         setTimeout(() => { 
 			setClassName("fadeOut")
-		}, 4000);
+        }, 4000);
+        
+        setTimeout(() => {
+            resetToast();
+        }, 7000)
     }, [message])
 
     return (
@@ -38,7 +43,7 @@ const Container = styled(FlexContainer)`
     right: 20px;
     z-index: 1001;
 
-    @media (max-width:768px) {
+    @media (max-width:${theme.breakpoint}) {
         left: 5px;
     }
 `;

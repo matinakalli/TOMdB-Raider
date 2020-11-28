@@ -3,6 +3,7 @@ import React, { Fragment, useState } from "react";
 import styled from "styled-components";
 import TomdbRaiderApi from "../../../API";
 import { useStores } from "../../../stores/useStores";
+import { theme } from "../../../theme";
 import { FlexContainer } from "../../StyledComponents";
 import BuyMessage from "./BuyMessage";
 import NoMovies from "./NoMovies";
@@ -86,7 +87,7 @@ const BuyButton = styled.button`
     font-size: 20px;
     font-weight: 600;
     background-color: rgba(218, 58, 117, 0.85);
-    color: #f2f0e8;
+    color: ${theme.colors.tomdbLight};
     border: none;
     border-radius: 5px; 
     cursor: pointer;
@@ -98,7 +99,7 @@ const BuyButton = styled.button`
     }
 
     :hover {
-        background-color: #da3a75;
+        background-color: ${theme.colors.tomdbBase2};
     }
 `;
 
@@ -111,7 +112,7 @@ const CloseIcon = styled.img`
 `;
 
 const Modal = styled.div`
-    background-color:#f2f0e8;
+    background-color: ${theme.colors.tomdbLight};
     box-shadow: 2px 1px 11px #c6c5bf; 
     z-index: 1001;
     position: fixed;
@@ -127,7 +128,7 @@ const Modal = styled.div`
         margin-bottom: 20px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: ${theme.breakpoint}) {
         left: 0;
         top: 100px;
     }
@@ -141,7 +142,7 @@ const Overlay = styled.div`
     top: 0;
     margin: 0 auto;
     display: block;
-    background-color: rgba(49, 66, 143, 0.8);
+    background-color: ${theme.colors.tomdbBase1Faded};
 `;
 
 const Movie = styled(FlexContainer)`

@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useStores } from "../../stores/useStores";
+import { theme } from "../../theme";
 
 const Search = () => {
     const [searchValue, setCurrentSearchValue] = useState("");
@@ -39,7 +40,7 @@ const Container = styled.div`
     width: 70%;
     margin: 30px auto;
 
-    @media (max-width: 768px) {   
+    @media (max-width: ${theme.breakpoint}) {   
         width: 100%;
     }
 `;

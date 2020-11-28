@@ -44,7 +44,6 @@ class MoviesStore {
 	}
 
 	setMovies = (movies) => {
-		console.log(movies)
 		this.movies = movies;
 	}
 
@@ -82,6 +81,16 @@ class MoviesStore {
 
 	setSortByVote = (type) => {
 		this.sortbyVote = type;
+	}
+
+	resetToast = () => {
+		const toast = {
+			isOpen: false,
+			message: "",
+			state: ""
+		}
+
+		this.setToast(toast);
 	}
 
 	// FUNCTIONS

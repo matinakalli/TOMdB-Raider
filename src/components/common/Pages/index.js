@@ -2,7 +2,9 @@ import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useStores } from "../../../stores/useStores";
+import { theme } from "../../../theme";
 import { FlexContainer } from "../../StyledComponents";
+import arrowLight from "../../../assets/icons/arrow-light.png";
 
 const Pages = () => {
     const { moviesStore: { pages, currentPage, setCurrentPage, searchValue, fetchMovies } } = useStores();
@@ -57,9 +59,9 @@ const Pages = () => {
 
     return (
         <FlexContainer justify="center" style={{ margin: "20px" }}>
-            {arrayFirstPage > 1 && <ArrowIcon isLeft alt="Previous page" src="https://img.icons8.com/plasticine/100/000000/arrow.png" onClick={() => changePage(currentPage - 1)} />}
+            {arrayFirstPage > 1 && <ArrowIcon isLeft alt="Previous page" src={arrowLight} onClick={() => changePage(currentPage - 1)} />}
             {groupOfPages}
-            {arrayLastPage < pages && <ArrowIcon alt="Previous page" src="https://img.icons8.com/plasticine/100/000000/arrow.png" onClick={() => changePage(currentPage + 1)} />}
+            {arrayLastPage < pages && <ArrowIcon alt="Previous page" src={arrowLight} onClick={() => changePage(currentPage + 1)} />}
         </FlexContainer>
     )
 
@@ -70,12 +72,12 @@ export default observer(Pages);
 const PageBox = styled.p`
     padding: 15px;
     font-weight: ${props => props.isCurrent ? "700" : "500"};
-    color: ${props => props.isCurrent && "#da3a75"};
+    color: ${props => props.isCurrent ? theme.colors.tomdbBase2 : theme.colors.tomdbLight};
     cursor: pointer;
 `;
 
 const ArrowIcon = styled.img`
     transform: ${props => props.isLeft && "rotate(180deg)"};
-    width: 40px;
+    width: 30px;
     cursor: pointer;
 `;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import "./styles.scss";
 import laraSearching from "../../../assets/lara-searching.gif";
 import { FlexContainer } from "../../StyledComponents";
+import { theme } from "../../../theme";
 
 
 const LaraIsSearching = () => {
@@ -22,7 +23,7 @@ export default LaraIsSearching;
 const LaraImage = styled.img`
 	width: 200px;
 
-	@media (max-width: 768px) {
+	@media (max-width: ${theme.breakpoint}) {
 		width: 100px;
 	}
 `;
@@ -51,5 +52,6 @@ const Container = styled(FlexContainer)`
     margin: 0 auto;
     border-radius: 20px;
     border-right: 2px solid #dbdbdb;
-    border-bottom: 2px solid #dbdbdb;
+	border-bottom: 2px solid #dbdbdb;
+	margin-top: 20px;
 `;

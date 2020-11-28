@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import React from "react";
 import styled from "styled-components";
 import { useStores } from "../../../stores/useStores";
+import { theme } from "../../../theme";
 
 const emptyCart = "https://img.icons8.com/dusk/64/000000/shopping-cart.png";
 const fullCart = "https://img.icons8.com/dusk/64/000000/shopping-cart-loaded.png";
@@ -28,7 +29,7 @@ const Container = styled.div`
 
 const CartImage = styled.img`
 
-    @media (max-width: 768px) {
+    @media (max-width: ${theme.breakpoint}) {
         width: 50px;
     }
 `;
@@ -47,7 +48,7 @@ const MovieCounter = styled.div`
     right: 19px;
     border: 1px solid;
 
-    @media (max-width: 768px) {
+    @media (max-width: ${theme.breakpoint}) {
         bottom: 18px;
         right: 12px;
     }

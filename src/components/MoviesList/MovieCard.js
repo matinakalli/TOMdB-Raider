@@ -7,6 +7,7 @@ import popcornAdd from "../../assets/icons/popcorn-add.png";
 import popcornRemove from "../../assets/icons/popcorn-remove.png";
 import defaultPoster from "../../assets/default-poster.png";
 import "./styles.scss";
+import { theme } from "../../theme";
 
 const imageOriginUrl = "https://image.tmdb.org/t/p/w500/";
 
@@ -57,17 +58,17 @@ const Card = styled.div`
     width: 200px;
     height: 300px;
     margin: 10px 0;
-    box-shadow: 2px 1px 11px #c6c5bf;
+    box-shadow: 2px 1px 11px #c6c5bf80;
     position: relative;
 
-    @media (max-width: 768px) {
+    @media (max-width: ${theme.breakpoint}) {
         width: 100%;
         height: 517px;
     }
 `;
 
 const Overlay = styled(FlexContainer)`
-    background-color: rgba(49, 66, 143, 0.8);
+    background-color: ${theme.colors.tomdbBase1Faded};
     flex-direction: column;
     border-radius: 5px;
     width: 100%;
@@ -81,7 +82,7 @@ const Overlay = styled(FlexContainer)`
 const RateCircle = styled(FlexContainer)`
     border-radius:25px;
     border: 2px solid #eae7dc; 
-    background-color: rgba(250, 37, 94, 0.8);
+    background-color: ${theme.colors.tomdbBase2Faded};
     box-shadow: 3px 1px 11px #eae7dc;
     width: 35px;
     height: 35px;
