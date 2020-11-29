@@ -1,10 +1,13 @@
-# Getting Started with Create React App
+# TOMdB Raider - The Original Movie Database
+The One and Only Database for Movies, where you can see all the movies ever existed, search the ones you have imagined and get suggestions how to create them. So you can <b>see</b>, <b>search</b>, <b>sort</b> and of course <b>buy</b> them (or not ;D).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created as an interview assignment and it will be described below.
 
-## Available Scripts
+PS. The amazing logo you will see it's a kind sponsorship from a friend that got inspired by the name TOMdB Raider, <a target="_blank" href="https://www.instagram.com/g.simos_tattoo/">George Simos</a>.
 
-In the project directory, you can run:
+## How to run the project
+
+### `yarn install` (in case you don't have node js installed you can do it following <a target="_blank" href="https://nodejs.org/en/download/package-manager/">these instrustions</a>)
 
 ### `yarn start`
 
@@ -14,57 +17,64 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn test`
+## Description and User Flows of TOMdB Raider.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project is a simple movie search and “purchase” application that a user can search the TMDB API, get results, sort and purchase a number of movies.
+Here are some simplified user flows that will help you:
+<ul>
+  <li>Users see the most recent movies when they land on the home screen.</li>
+  <li>Users can navigate through the different pages.</li>
+  <li>Users search for a movie and they see a loading state while searching is in progress.</li>
+  <li>Users search for a movie but don’t get any results. They see an empty state message.</li>
+  <li>Users search for a movie and get results of some movies with posters and titles.</li>
+  <ul>
+    <li>They have the ability to add a movie in the cart.</li>
+    <li>They have the ability to remove a movie from the cart by using the cart or the movie items from the list.</li>
+    <li>They can also see how many movies they have added to the cart on the top of the page.</li>
+    </ul>
+  <li>Users can “purchase” the items in the cart by clicking a button.</li>
+    <ul>
+     <li>They get a successful message when the purchase succeeds. </li>
+     <li>They should get an error message when something goes wrong. </li>
+     <li>We should be careful not to charge them again by a user’s mistake while clicking the “purchase” button multiple times. </li>
+      </ul>
+  <li>Users can also sort results by highest/lowest vote_average key from the movies response but only for the results of the current page since the api returns results per page. However their sorting preferenct is saved and they will have the same even if they change page.</li>
+  </ul>
+ 
+ ## Tools and Apis
+<ul>
+  <li><b>Movies Data Endpoint</b></li>
+  The <b>TMDB API</b>. You need to register and get a key from https://www.themoviedb.org/settings/api​. Anything else you are going to need for this exercise you can find in these two links:
+<ul>
+  <li>https://developers.themoviedb.org/3/search/search-movies</li>
+  <li>https://developers.themoviedb.org/3/getting-started/images</li>
+  </ul>
+</ul>
 
-### `yarn build`
+<ul>
+  <li><b>Purchase Endpoint</b></li>
+We have prepared the endpoint https://api.mocklets.com/mock68075/ for you, that randomly responds with 400 or 200 status for POST requests. You will need to add two headers to your requests:
+  
+  ```
+     'X-Mocklets-PublicKey': 'txmovies'
+     'X-Mocklets-Checksum': '830c7cd4a70be6540a4898441ca02951'
+  ```
+  
+  
+  It’s not mandatory to use this endpoint, but we would like to see the headers in your requests and the side effects of the requests to your UI.
+The endpoint’s payload should be a data object with a list of movie ids:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  ```
+  {
+    data: {
+    movies: [541, 24, 35, 54]; }
+  }
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+and the endpoint responds with this payload:
+  ```
+  {
+    success: true|false
+  }
+  ```
+</ul>
