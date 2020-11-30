@@ -25,10 +25,13 @@ const Container = styled.div`
     cursor: pointer;
     right: 20px;
     top: 30px;
+
+    @media (max-width: ${theme.breakpoint}) {
+        top: 20px;
+    }
 `;
 
 const CartImage = styled.img`
-
     @media (max-width: ${theme.breakpoint}) {
         width: 50px;
     }

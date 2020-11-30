@@ -25,6 +25,7 @@ export default observer(SortByVotes);
 
 const Container = styled(FlexContainer)`
     font-size: 20px;
+    color: ${theme.colors.tomdbLight};
     @media (max-width: ${theme.breakpoint}) {
         font-size: 15px;
         margin-top: 10px;

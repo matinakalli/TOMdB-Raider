@@ -1,6 +1,6 @@
 const theme = {
     colors: {
-        tomdbLight: "#f9f8f1",
+        tomdbLight: "#fffced",
         tomdbLightFaded: "rgba(249,248,241, 0.4)",
         tomdbBase1: "#485487",
         tomdbBase1Faded: "rgba(72,84,135,0.8)",

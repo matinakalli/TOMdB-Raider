@@ -31,6 +31,6 @@ const TomdbLogo = styled.img`
         width: 72%;
         margin-right: auto;
         margin-left: 10px;
-        margin-top: 20px;
+        padding-top: 10px;
     }
 `;

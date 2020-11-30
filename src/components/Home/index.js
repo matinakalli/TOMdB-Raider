@@ -59,6 +59,7 @@ const CustomWidthContainer = styled(FlexContainer)`
 `;
 
 const SearchTitle = styled.h2`
+    color: ${theme.colors.tomdbLight};
     @media(max-width: ${theme.breakpoint}) {
         font-size: 18px;
         text-align: center;
